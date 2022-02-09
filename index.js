@@ -27,9 +27,9 @@ async function run() {
 
         //Get all services
         app.get("/services", async (req, res) => {
-            const cursor = serviceCollection.find({});
+            const cursor = serviceCollection.find({ special_price: "undefined" });
             const services = await cursor.toArray();
-            res.send(services)
+            res.json(services)
         })
 
         //Get single services
