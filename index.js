@@ -66,6 +66,28 @@ async function run() {
             res.send(orders)
         })
 
+        //get all special offer service
+        app.get("/specialOffer", async (req, res) => {
+            const result = await serviceCollection.find({ special_price: { $ne: "undefined" } }).toArray()
+            res.json(result)
+        })
+
+
+        app.get("/SpainPackages", async (req, res) => {
+            const result = await serviceCollection.find({ country: "Spain" }).toArray()
+            res.json(result)
+        })
+
+        app.get("/ItalyPackages", async (req, res) => {
+            const result = await serviceCollection.find({ country: "Italy" }).toArray()
+            res.json(result)
+        })
+
+        app.get("/DubaiPackages", async (req, res) => {
+            const result = await serviceCollection.find({ country: "United Arab Emirates" }).toArray()
+            res.json(result)
+        })
+
         //Post Services
         app.post("/services", async (req, res) => {
             console.log("body", req.body);
@@ -110,7 +132,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get('/', (req, res) => {
-    res.send("Server is running")
+    res.send("Server is running.........")
 })
 app.listen(port, () => {
     console.log("Running Tourism Vacation", port)
